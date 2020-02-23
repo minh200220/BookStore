@@ -1,6 +1,4 @@
 .Header {
-    text-decoration: underline overline solid rgb(220, 190, 248);
-    padding: 50px 0px;
-    text-align: center;
-  }
-  
+  text-decoration: underline overline solid rgb(220, 190, 248);
+  padding: 50px 0px;
+}

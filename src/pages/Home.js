@@ -4,21 +4,24 @@ import {
   Button,
   CardImg,
   CardTitle,
-  CardDeck,
   CardSubtitle,
   CardBody,
   Container,
-  Row
+  Row,
+  Col
 } from "reactstrap";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Header from "../components/Header";
+import Counter from "../components/Counter";
+import { CartContext } from "../contexts/Cart";
+import "../styles/Home.css";
 
 const books = [
   {
-    name: "Kono Subarashii Sekai Ni Shukufuku o! Vol 2",
+    name: "Genjitsushugi Yuusha no Oukokusaikenki Vol 1",
     src:
-      "http://valvrareteam.com/wp-content/uploads/2015/11/2014E5B9B412E69C8823E697A500E6998227E5888640E7A7920001-720x1024.jpg",
-    price: "$55"
+      "http://valvrareteam.com/wp-content/uploads/2016/07/fffe5000a8880033c912f8bd91894519-1-727x1024.jpg",
+    price: "$70"
   },
   {
     name: "Kono Subarashii Sekai Ni Shukufuku o! Vol 1",
@@ -27,22 +30,27 @@ const books = [
     price: "$55"
   },
   {
-    name: "Kono Subarashii Sekai Ni Shukufuku o! Vol 3",
+    name: "Accel World Vol 9",
     src:
-      "http://valvrareteam.com/wp-content/uploads/2015/11/IMG_0001-721x1024.png",
-    price: "$55"
+      "http://valvrareteam.com/wp-content/uploads/2015/09/coverImage_1737510-716x1024.jpg",
+    price: "$71"
   },
   {
-    name: "Kono Subarashii Sekai Ni Shukufuku o! Vol 4",
+    name: "No game no life Vol 2",
     src:
-      "http://valvrareteam.com/wp-content/uploads/2015/11/qGFUgrX-722x1024.jpg",
-    price: "$55"
+      "http://valvrareteam.com/wp-content/uploads/2015/09/NGNL_V2_Cover_Page-730x1024.jpg",
+    price: "$60"
   },
   {
-    name: "Kono Subarashii Sekai Ni Shukufuku o! Vol 5",
+    name: "No game no life Vol 2",
     src:
-      "http://valvrareteam.com/wp-content/uploads/2015/11/coverImage_1030061.jpg",
-    price: "$55"
+      "http://valvrareteam.com/wp-content/uploads/2015/09/NGNL_V2_Cover_Page-730x1024.jpg",
+    price: "$60"
+  },
+  {
+    name: "Tate no Yuusha no Nariagari Vol 5",
+    src: "http://valvrareteam.com/wp-content/uploads/2015/09/Cover_5.jpg",
+    price: "$63"
   }
 ];
 
@@ -51,40 +59,58 @@ const Home = props => {
     <div>
       <Container>
         <Header title="New light novels" />
-        <Row>
-          <CardDeck>
-            {books.map(book => (
+        <Row className="justify-content-center">
+          {books.map(book => (
+            <Col xs="6" sm="4" md="3">
               <Card>
                 <CardImg top width="100%" src={book.src} alt="Card image cap" />
                 <CardBody>
-                  <CardTitle>{book.name}</CardTitle>
-                  <CardSubtitle>{book.price}</CardSubtitle>
-                  <Button>
-                    <AddShoppingCartIcon />
-                  </Button>
+                  <CardTitle>
+                    <div className="name text-center">{book.name}</div>
+                  </CardTitle>
+                  <CardSubtitle className="text-center">{book.price}</CardSubtitle>
+                  <CardSubtitle>
+                    <Counter />
+                    <CartContext.Consumer>
+                      {({ addToCart }) => (
+                        <Button onClick={() => addToCart(book)}>
+                          <AddShoppingCartIcon />
+                        </Button>
+                      )}
+                    </CartContext.Consumer>
+                  </CardSubtitle>
                 </CardBody>
               </Card>
-            ))}
-          </CardDeck>
+            </Col>
+          ))}
         </Row>
       </Container>
       <Container>
         <Header title="Bestsellers" />
-        <Row>
-          <CardDeck>
-            {books.map(book => (
+        <Row className="justify-content-center">
+          {books.map(book => (
+            <Col xs="6" sm="4" md="3">
               <Card>
                 <CardImg top width="100%" src={book.src} alt="Card image cap" />
                 <CardBody>
-                  <CardTitle>{book.name}</CardTitle>
-                  <CardSubtitle>{book.price}</CardSubtitle>
-                  <Button>
-                    <AddShoppingCartIcon />
-                  </Button>
+                <CardTitle>
+                    <div className="name text-center">{book.name}</div>
+                  </CardTitle>
+                  <CardSubtitle className="text-center">{book.price}</CardSubtitle>
+                  <CardSubtitle>
+                    <Counter />
+                    <CartContext.Consumer>
+                      {({ addToCart }) => (
+                        <Button onClick={() => addToCart(book)}>
+                          <AddShoppingCartIcon />
+                        </Button>
+                      )}
+                    </CartContext.Consumer>
+                  </CardSubtitle>
                 </CardBody>
               </Card>
-            ))}
-          </CardDeck>
+            </Col>
+          ))}
         </Row>
       </Container>
     </div>
