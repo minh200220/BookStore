@@ -69,7 +69,7 @@ const Home = props => {
                     <div className="name text-center">{book.name}</div>
                   </CardTitle>
                   <CardSubtitle className="text-center">{book.price}</CardSubtitle>
-                  <CardSubtitle>
+                  <CardSubtitle className="text-center">
                     <Counter />
                     <CartContext.Consumer>
                       {({ addToCart }) => (
@@ -97,7 +97,7 @@ const Home = props => {
                     <div className="name text-center">{book.name}</div>
                   </CardTitle>
                   <CardSubtitle className="text-center">{book.price}</CardSubtitle>
-                  <CardSubtitle>
+                  <CardSubtitle className="text-center">
                     <Counter />
                     <CartContext.Consumer>
                       {({ addToCart }) => (
