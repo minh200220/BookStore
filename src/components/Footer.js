@@ -1,12 +1,11 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
-import "../styles/Footer.css";
+import "../styles/Footer.scss";
 import payment from "../images/payment.JPG";
 
 export default function() {
   return (
     <div className="Footer">
-      {/* <Container className="text-white bg-dark"> */}
       <Row className="text-white bg-dark mt-4 pt-4 pb-4 pl-5">
         <Col sm="6" md="2" className="mb-3">
           <h5>Explore</h5>
@@ -72,7 +71,6 @@ export default function() {
           <div>Registered company number: 20022000</div>
         </Col>
       </Row>
-      {/* </Container> */}
     </div>
   );
 }

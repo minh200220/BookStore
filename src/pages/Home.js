@@ -10,11 +10,14 @@ import {
   Row,
   Col
 } from "reactstrap";
+import "../styles/Home.scss";
+
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+
 import Header from "../components/Header";
 import Counter from "../components/Counter";
 import { CartContext } from "../contexts/Cart";
-import "../styles/Home.css";
+
 
 const books = [
   {

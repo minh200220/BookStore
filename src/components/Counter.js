@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Input, InputGroup, InputGroupAddon, Button } from "reactstrap";
 
-import "../styles/Counter.css";
-
 export default function() {
   const [count, setCount] = useState(1);
 
