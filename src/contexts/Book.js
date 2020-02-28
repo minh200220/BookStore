@@ -17,14 +17,9 @@ export class BookProvider extends Component {
         };
 
         this.viewBook = this.viewBook.bind(this);
-        this.updateBook = this.updateBook.bind(this);
     }
 
     viewBook(book) {
-        this.setState({ myBook: book });
-    }
-
-    updateBook(book) {
         this.setState({ myBook: book });
     }
 
@@ -34,8 +29,7 @@ export class BookProvider extends Component {
             <BookContext.Provider
                 value={{
                     myBook: this.state.myBook,
-                    viewBook: this.viewBook,
-                    updateBook: this.updateBook
+                    viewBook: this.viewBook
                 }}
             >
                 {this.props.children}

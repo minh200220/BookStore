@@ -3,15 +3,12 @@ import {
   Container,
   Row,
   Col,
-  Button,
   Form,
   FormGroup,
   Label,
   Input
 } from "reactstrap";
 import axios from "axios";
-
-
 
 export default function() {
     const [book, setBook] = useState({ name: "", author: "", price: "", description: "", categories: "", src: "" })
@@ -96,7 +93,9 @@ export default function() {
                     <Input type="file" name="lnimage" id="image" />
                 </FormGroup> */}
 
-                <Button onClick={() => handleSubmit()}>Create</Button>
+                <a href="/viewall" className="btn btn-primary" onClick={() => handleSubmit()}>
+                    Create
+                </a>
             </Form>
             </Col>
             <Col md="6" className="mt-2">

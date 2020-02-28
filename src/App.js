@@ -6,14 +6,19 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import TopMenu from "./components/TopMenu";
 import Footer from "./components/Footer";
 
+// users' pages
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import MyCart from "./pages/MyCart";
 import NotFound from "./pages/404";
 import CheckOut from "./pages/CheckOut";
-import Create from "./pages/Create";
 import View from "./pages/View";
 import Home from "./pages/Home";
+
+// adminitrator's page
+import ViewAll from "./pages/ViewAll";
+import Create from "./pages/Create";
+import Update from "./pages/Update";
 
 import { CartProvider } from "./contexts/Cart";
 import { BookProvider } from "./contexts/Book";
@@ -46,6 +51,12 @@ function App() {
               </Route>
               <Route path="/view">
                 <View />
+              </Route>
+              <Route path="/viewall">
+                <ViewAll />
+              </Route>
+              <Route path="/update">
+                <Update />
               </Route>
               <Route path="/">
                 <Home />
