@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Button,
@@ -10,6 +10,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import axios from 'axios';
 import "../styles/Home.scss";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
@@ -17,47 +18,17 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Header from "../components/Header";
 import Counter from "../components/Counter";
 import { CartContext } from "../contexts/Cart";
+import { BookContext } from '../contexts/Book';
 
+export default function() {
+  const [books, setBooks] = useState([]);
 
-const books = [
-  {
-    name: "Genjitsushugi Yuusha no Oukokusaikenki Vol 1",
-    src:
-      "http://valvrareteam.com/wp-content/uploads/2016/07/fffe5000a8880033c912f8bd91894519-1-727x1024.jpg",
-    price: "$70"
-  },
-  {
-    name: "Kono Subarashii Sekai Ni Shukufuku o! Vol 1",
-    src:
-      "http://valvrareteam.com/wp-content/uploads/2015/11/Damegami_cover_1.jpg",
-    price: "$55"
-  },
-  {
-    name: "Accel World Vol 9",
-    src:
-      "http://valvrareteam.com/wp-content/uploads/2015/09/coverImage_1737510-716x1024.jpg",
-    price: "$71"
-  },
-  {
-    name: "No game no life Vol 2",
-    src:
-      "http://valvrareteam.com/wp-content/uploads/2015/09/NGNL_V2_Cover_Page-730x1024.jpg",
-    price: "$60"
-  },
-  {
-    name: "No game no life Vol 2",
-    src:
-      "http://valvrareteam.com/wp-content/uploads/2015/09/NGNL_V2_Cover_Page-730x1024.jpg",
-    price: "$60"
-  },
-  {
-    name: "Tate no Yuusha no Nariagari Vol 5",
-    src: "http://valvrareteam.com/wp-content/uploads/2015/09/Cover_5.jpg",
-    price: "$63"
-  }
-];
+  useEffect(() => {
+    axios.get("http://localhost:5000/product/all").then(res => {
+      setBooks(res.data.product);
+    });
+  }, []);
 
-const Home = props => {
   return (
     <div>
       <Container>
@@ -69,7 +40,16 @@ const Home = props => {
                 <CardImg top width="100%" src={book.src} alt="Card image cap" />
                 <CardBody>
                   <CardTitle>
-                    <div className="name text-center">{book.name}</div>
+                    <BookContext.Consumer>
+                      {({ viewBook }) => (
+                        <a href="/view" 
+                          className="name text-center" 
+                          onClick={() => viewBook(book)}
+                        >
+                          {book.name}
+                        </a>
+                      )}
+                    </BookContext.Consumer>
                   </CardTitle>
                   <CardSubtitle className="text-center">{book.price}</CardSubtitle>
                   <CardSubtitle className="text-center">
@@ -96,8 +76,17 @@ const Home = props => {
               <Card>
                 <CardImg top width="100%" src={book.src} alt="Card image cap" />
                 <CardBody>
-                <CardTitle>
-                    <div className="name text-center">{book.name}</div>
+                  <CardTitle>
+                    <BookContext.Consumer>
+                      {({ viewBook }) => (
+                        <a href="/view" 
+                          className="name text-center" 
+                          onClick={() => viewBook(book)}
+                        >
+                          {book.name}
+                        </a>
+                      )}
+                    </BookContext.Consumer>
                   </CardTitle>
                   <CardSubtitle className="text-center">{book.price}</CardSubtitle>
                   <CardSubtitle className="text-center">
@@ -119,5 +108,3 @@ const Home = props => {
     </div>
   );
 };
-
-export default Home;

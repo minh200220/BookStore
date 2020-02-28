@@ -1,4 +1,6 @@
 .name {
+  width: 100%;
+  display: block;
   font-weight: bold;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -6,5 +8,6 @@
   &:hover {
     overflow: visible;
     white-space: normal;
+    text-decoration: none;
   }
 }
