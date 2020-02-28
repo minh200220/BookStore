@@ -1,39 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import "../styles/MyCart.scss";
 import { CartContext } from "../contexts/Cart";
 
 export default function() {
+  const { cartItems, removeFromCart } = useContext(CartContext);
   return (
     <div>
       <Container className="mt-2">
         <Row>
           <Col md="6" className=" mt-3">
-            <CartContext.Consumer>
-              {({ cartItems }) => (
-                <div>
-                  {cartItems.map(item => (
-                    <div className="d-flex border">
-                      <img src={item.src} className="lnimg" alt="light novel" />
-                      <div className="text">
-                        <div>{item.name}</div>
-                        <div>{item.price}</div>
-                        <CartContext.Consumer>
-                          {({ removeFromCart }) => (
-                            <Button 
-                              onClick={() => removeFromCart(item)}
-                              color="primary"
-                            >  
-                              Remove from cart
-                            </Button>
-                          )}
-                        </CartContext.Consumer>
-                      </div>
-                    </div>
-                  ))}
+            {cartItems.map(item => (
+              <div className="d-flex border">
+                <img src={item.src} className="lnimg" alt="light novel" />
+                <div className="text">
+                  <div>{item.name}</div>
+                  <div>{item.price}</div>
+                  <Button color="primary"
+                    onClick={() => removeFromCart(item)} >  
+                    Remove from cart
+                  </Button>
                 </div>
-              )}
-            </CartContext.Consumer>
+              </div>
+            ))}
           </Col>
           <Col md="5" className="mt-3">
             <div className="border mb-3">

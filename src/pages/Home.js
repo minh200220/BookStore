@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
-import {
-  Card,
-  Button,
-  CardImg,
-  CardTitle,
-  CardSubtitle,
-  CardBody,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
+import React, { useState, useEffect, useContext } from "react";
+import { Card, Button, CardImg,
+  CardTitle, CardSubtitle, CardBody,
+  Container, Row, Col } from "reactstrap";
 import axios from 'axios';
 import "../styles/Home.scss";
 
@@ -22,6 +14,8 @@ import { BookContext } from '../contexts/Book';
 
 export default function() {
   const [books, setBooks] = useState([]);
+  const { addToCart } = useContext(CartContext);
+  const { viewBook } = useContext(BookContext);
 
   useEffect(() => {
     axios.get("http://localhost:5000/product/all").then(res => {
@@ -38,29 +32,20 @@ export default function() {
             <Col xs="6" sm="4" md="3">
               <Card>
                 <CardImg top width="100%" src={book.src} alt="Card image cap" />
-                <CardBody>
+                <CardBody className="text-center">
                   <CardTitle>
-                    <BookContext.Consumer>
-                      {({ viewBook }) => (
-                        <a href="/view" 
-                          className="name text-center" 
-                          onClick={() => viewBook(book)}
-                        >
-                          {book.name}
-                        </a>
-                      )}
-                    </BookContext.Consumer>
+                    <a href="/view" 
+                      className="name text-center" 
+                      onClick={() => viewBook(book)}>
+                      {book.name}
+                    </a>
                   </CardTitle>
-                  <CardSubtitle className="text-center">{book.price}</CardSubtitle>
-                  <CardSubtitle className="text-center">
+                  <CardSubtitle>{book.price}</CardSubtitle>
+                  <CardSubtitle>
                     <Counter />
-                    <CartContext.Consumer>
-                      {({ addToCart }) => (
-                        <Button onClick={() => addToCart(book)}>
-                          <AddShoppingCartIcon />
-                        </Button>
-                      )}
-                    </CartContext.Consumer>
+                    <Button onClick={() => addToCart(book)}>
+                      <AddShoppingCartIcon />
+                    </Button>
                   </CardSubtitle>
                 </CardBody>
               </Card>
@@ -75,29 +60,20 @@ export default function() {
             <Col xs="6" sm="4" md="3">
               <Card>
                 <CardImg top width="100%" src={book.src} alt="Card image cap" />
-                <CardBody>
+                <CardBody className="text-center">
                   <CardTitle>
-                    <BookContext.Consumer>
-                      {({ viewBook }) => (
-                        <a href="/view" 
-                          className="name text-center" 
-                          onClick={() => viewBook(book)}
-                        >
-                          {book.name}
-                        </a>
-                      )}
-                    </BookContext.Consumer>
+                    <a href="/view" 
+                      className="name text-center" 
+                      onClick={() => viewBook(book)}>
+                      {book.name}
+                    </a>
                   </CardTitle>
-                  <CardSubtitle className="text-center">{book.price}</CardSubtitle>
-                  <CardSubtitle className="text-center">
+                  <CardSubtitle>{book.price}</CardSubtitle>
+                  <CardSubtitle>
                     <Counter />
-                    <CartContext.Consumer>
-                      {({ addToCart }) => (
-                        <Button onClick={() => addToCart(book)}>
-                          <AddShoppingCartIcon />
-                        </Button>
-                      )}
-                    </CartContext.Consumer>
+                    <Button onClick={() => addToCart(book)}>
+                      <AddShoppingCartIcon />
+                    </Button>
                   </CardSubtitle>
                 </CardBody>
               </Card>
