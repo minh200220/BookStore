@@ -40,7 +40,7 @@ export default function() {
                       {book.name}
                     </a>
                   </CardTitle>
-                  <CardSubtitle>{book.price}</CardSubtitle>
+                  <CardSubtitle>${book.price}</CardSubtitle>
                   <CardSubtitle>
                     <Counter />
                     <Button onClick={() => addToCart(book)}>

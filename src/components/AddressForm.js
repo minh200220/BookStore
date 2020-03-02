@@ -15,19 +15,19 @@ export default function AddressForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="firstName"
-            name="firstName"
-            label="First name"
+            id="name"
+            name="name"
+            label="Name"
             fullWidth
-            autoComplete="fname"
+            autoComplete="name"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="lastName"
-            name="lastName"
-            label="Last name"
+            id="phoneNumber"
+            name="phoneNumber"
+            label="Phone number"
             fullWidth
             autoComplete="lname"
           />
@@ -35,20 +35,20 @@ export default function AddressForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            id="house number, street"
+            name="house number, street"
+            label="House number, street"
             fullWidth
-            autoComplete="billing address-line1"
+            autoComplete="billing house number, street"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
+            id="district"
+            name="district"
+            label="District"
             fullWidth
-            autoComplete="billing address-line2"
+            autoComplete="billing district"
           />
         </Grid>
         <Grid item xs={12} sm={6}>

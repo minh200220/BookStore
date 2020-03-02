@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -14,11 +15,26 @@ import {
   NavbarText,
   Input
 } from "reactstrap";
+import { NameContext } from "../contexts/Name";
 
-const TopMenu = props => {
+export default function TopMenu(props) {
   const [isOpen, setIsOpen] = useState(false);
+  const { searchName } = useContext(NameContext);
+  const history = useHistory();
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const onKeyUp = (event) => {
+    if (event.keyCode === 13) {
+      let text = event.target.value.trim();
+      if (!text) {
+        return;
+      }
+
+      searchName(text);
+      history.push("/search");
+    }
+  }
 
   return (
     <div>
@@ -47,7 +63,10 @@ const TopMenu = props => {
             <NavItem>
               <NavLink href="/cart">Cart</NavLink>
             </NavItem>
-            <Input placeholder="Search" />
+            <Input 
+              placeholder="Search for light novel" 
+              onKeyUp={onKeyUp}
+            />
           </Nav>
           <NavbarText>Best LN</NavbarText>
         </Collapse>
@@ -56,4 +75,3 @@ const TopMenu = props => {
   );
 };
 
-export default TopMenu;
